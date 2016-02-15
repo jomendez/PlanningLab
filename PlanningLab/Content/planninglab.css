@@ -1,0 +1,130 @@
+﻿
+body.hide-room {
+  background-image: none;
+}
+body.hide-room .container-fluid {
+  display: none;
+}
+.playing-field {
+  margin-right: 250px;
+}
+.playing-field h2 {
+  display: inline-block;
+}
+.playing-field > .btn {
+  margin: 10px 5px;
+}
+.players {
+  float:right;
+  width: 250px;
+  padding: 10px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.players ul {
+  margin: 0;
+  padding: 0;
+}
+.players ul li {
+  list-style: none;
+  font-size: 14px;
+}
+.players ul li.me:after {
+  content: "me";
+  font-weight: bold;
+  font-size: smaller;
+  color: #ff4e4e;
+}
+.topic {
+  font-size: 35px !important;
+  height: 60px !important;
+  line-height: 60px !important;
+}
+.card {
+  display: block;
+  float: left;
+  width: 100px;
+  height: 140px;
+  border: 5px double black;
+  border-radius: 8px;
+  margin-right: 1em;
+  text-align: center;
+}
+.selection-cards {
+  background-color:cornflowerblue;
+  cursor: pointer;
+}
+.grey-background {
+    background-color: #585757;
+}
+.card .value {
+  font-size: 75px;
+  display: inline-block;
+  font-weight:700;
+  position: relative;
+  top: -11px;
+}
+.card .value-cards {
+    font-size: 75px;
+    display: inline-block;
+    font-weight: 700;
+    position: relative;
+    top: -30px;
+    color: white;
+}
+
+.card .name {
+    bottom: 5px;
+    color: white;
+    font-size: 12px;
+}
+.card.card-hidden .value {
+  display: none;
+}
+
+.question-mark {
+    color: white;
+    font-size: 75px;
+    display: inline-block;
+    font-weight: 700;
+    position: relative;
+    top: -30px;
+}
+
+.card.card-selected {
+  /*background-image: url(/Content/images/green-check.png);*/
+  -moz-background-size: 100px 140px;
+  -o-background-size: 100px 140px;
+  -webkit-background-size: 100px 140px;
+  background-size: 100px 140px;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.team-cards-placeholder {
+    min-height: 220px;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    border-radius: 5px;
+    padding:30px;
+}
+
+#jumbotron-content {
+    overflow: hidden;
+    padding-left:20px;
+    padding-right:0px;
+}
+
+.recently-created-rooms {
+    list-style: none;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    margin-right: 25px;
+    text-decoration: underline;
+}
+
+.box {
+    border: 1px solid #ccc;
+    margin-right: 25px;
+}

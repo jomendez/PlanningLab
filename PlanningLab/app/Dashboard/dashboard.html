@@ -1,0 +1,87 @@
+﻿
+<div id="main-dashboard" ng-cloak ng-show="roomCreated && !!room">
+    <div class="players">
+        <h4>Players</h4>
+
+        <ul>
+            <li ng-repeat="user in room.Users" ng-class="{ disabled: user.Disconnected, me: user.Email == me.Email }">
+                <i class="glyphicon glyphicon-trash" ng-show="isOwner" ng-click="removeRoomUser()"></i> {{ user.Name }}
+            </li>
+        </ul>
+    </div>
+    <div class="container-fluid playing-field">
+        <h2>Room: {{ room.Name }}</h2>
+        <div class="pull-right">
+            <!--<div class="btn-group">
+            <button class=" btn btn-default dropdown-toggle" ng-click="showShareRoom()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Share this Room</button>
+            <ul class="dropdown-menu">
+                <li>{{shareRoomUrl}}</li>
+            </ul>
+        </div>-->
+            <div class="btn-group">
+                <button class="btn btn-primary" ng-show="isOwner" ng-click="showAllCards(!allCardsShowing)">{{ allCardsShowing && 'Hide' || 'Show' }} All Cards</button>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-danger" ng-show="isOwner" ng-click="resetRoom()">Reset Room</button>
+            </div>
+
+        </div>
+        <section>
+            <div class="row-fluid">
+                <input type="text" class="form-control topic" ng-model="room.Topic" placeholder="Enter Topic" ng-change="roomTopicChanged()" required />
+            </div>
+
+            <ul class="row-fluid cards team-cards-placeholder">
+                <li class="card grey-background" ng-repeat="card in room.Cards" ng-class="{ 'card-hidden': !allCardsShowing, 'card-selected': card.Value.length > 0 }">
+                    <div class="name">{{ card.User.Name }}</div>
+                    <div ng-show="allCardsShowing" class="value-cards">{{ card.Value }}</div>
+                    <div ng-show="!allCardsShowing" class="question-mark">?</div>
+
+                </li>
+            </ul>
+            <hr />
+            <div class="row-fluid">
+
+                <div ng-repeat="items in planningMethod track by $index" ng-click="myCardValueChanged(items);" class="card selection-cards">
+                    <span class="value">{{::items}}</span>
+                </div>
+            </div>
+        </section>
+
+        </div>
+</div>
+
+<div id="joinRoomModal" ng-cloak ng-show="!roomCreated || !room">
+    <div class="modal-header">
+        <h3>Create or Join a Room</h3>
+    </div>
+    <div class="modal-body form-group box">
+        <p>
+            <label>New Room Name<br /></label>
+            <input type="text" ng-model="room.Name" placeholder="Room Name" required class="form-control" />
+        </p>
+        <div>
+            <button class="btn btn-primary" ng-disabled="!room.Name" ng-click="closeJoinRoomModal()">Create a new Room</button>
+        </div>
+    </div>
+
+    <div class="modal-body form-group box">
+        <p>
+            <label>Join an existing room</label>
+            <input type="text" ng-model="roomId" placeholder="Room Id (00000000-0000-0000-0000-000000000000)" required class="form-control" />
+        </p>
+        <div>
+            <button class="btn btn-primary" ng-disabled="!roomId" ng-click="goOpen('open/' + roomId)">Join Room</button>
+        </div>
+    </div>
+
+    <div class="modal-body form-group box" ng-show="myRooms.length > 0">
+        <p>
+            <label>Recently created Rooms:</label>
+            </p>
+            <ul class="recently-created-rooms">
+                <li ng-repeat=" item in myRooms"><a href="{{'#/open/' + item.RoomId}}">{{item.RoomName}}</a></li>
+            </ul>
+        </div>
+
+    </div>
